@@ -1,4 +1,5 @@
 from rest_framework import generics
+from rest_framework.filters import SearchFilter, OrderingFilter
 from .models import (
     Category,
 )
@@ -14,6 +15,18 @@ class CategoryListAPIView(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategoryListSerializer
     authentication_classes = ()
+    filter_backends = (
+        SearchFilter,
+        OrderingFilter,
+    )
+    search_fields = (
+        'title',
+        'slug',
+        'description',
+    )
+    ordering_fields = (
+        'title',
+    )
 
 
 class CategoryDetailAPIView(generics.RetrieveAPIView):

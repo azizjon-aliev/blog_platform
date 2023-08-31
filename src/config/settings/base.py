@@ -6,7 +6,6 @@ from src.utils.functions import reduce_path
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-
 load_dotenv()
 
 DJANGO_ENV = os.getenv("DJANGO_ENV", "DEVELOPMENT")
@@ -28,25 +27,27 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
+    'django_filters',
     'drf_spectacular',
 
     # apps
     'src.apps.blog',
 ]
 
-
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-       'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.AllowAny',
     ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 10
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
 }
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -79,7 +80,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'src.config.wsgi.application'
 
-
 LANGUAGE_CODE = 'ru-RU'
 
 TIME_ZONE = 'UTC'
@@ -93,6 +93,5 @@ STATIC_ROOT = os.path.join(ROOT_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(ROOT_DIR, 'media')
-
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
