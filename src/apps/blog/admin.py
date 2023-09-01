@@ -1,16 +1,16 @@
 from django.contrib import admin
-from .models import (
-    Tag,
-    Category,
+from src.apps.blog.utils import display_image
+from src.apps.blog.models import (
     Post,
     Comment,
+    Category,
+    Tag
 )
-from .utils import display_image
 
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
-    """ Admin interface for tag model """
+    """ Административный интерфейс для модели Тег. """
 
     date_hierarchy = "created_at"
     list_display = (
@@ -32,6 +32,7 @@ class TagAdmin(admin.ModelAdmin):
     search_fields = (
         'title',
         'slug',
+        'author__username',
     )
     readonly_fields = (
         'author',
@@ -43,25 +44,41 @@ class TagAdmin(admin.ModelAdmin):
     }
 
     def save_model(self, request, obj, form, change):
+        """ Переопределенный метод save_model для автоматической установки автора. """
+
         obj.author = request.user
         super().save_model(request, obj, form, change)
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    """ Admin interface for category model """
+    """ Административный интерфейс для модели Категория. """
 
     date_hierarchy = "created_at"
     list_display = (
         'title',
         'slug',
+        'author',
         'created_at',
+    )
+    list_filter = (
+        'author',
+    )
+    fields = (
+        'title',
+        'slug',
+        'description',
+        'author',
+        'created_at',
+        'updated_at',
     )
     search_fields = (
         'title',
         'slug',
+        'author__username',
     )
     readonly_fields = (
+        'author',
         'created_at',
         'updated_at',
     )
@@ -69,10 +86,16 @@ class CategoryAdmin(admin.ModelAdmin):
         'slug': ('title',)
     }
 
+    def save_model(self, request, obj, form, change):
+        """ Переопределенный метод save_model для автоматической установки автора. """
+
+        obj.author = request.user
+        super().save_model(request, obj, form, change)
+
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    """ Admin interface for comment model """
+    """ Административный интерфейс для модели Комментарий. """
 
     date_hierarchy = "created_at"
     autocomplete_fields = (
@@ -80,32 +103,46 @@ class CommentAdmin(admin.ModelAdmin):
     )
     list_display = (
         'post',
+        'author',
         'text',
         'created_at',
     )
     list_filter = (
         'post',
+        'author',
     )
     search_fields = (
         'post__title',
+        'author__username',
         'text',
     )
     readonly_fields = (
+        'author',
         'created_at',
         'updated_at',
     )
 
+    def save_model(self, request, obj, form, change):
+        """ Переопределенный метод save_model для автоматической установки автора. """
+
+        obj.author = request.user
+        super().save_model(request, obj, form, change)
+
 
 class CommentInline(admin.TabularInline):
+    """ Inline-класс для комментариев, используемый в административном интерфейсе. """
+
     model = Comment
     max_num = 0
     extra = 0
     can_delete = False
     fields = (
+        'author',
         'text',
         'created_at',
     )
     readonly_fields = (
+        'author',
         'text',
         'created_at',
     )
@@ -115,8 +152,8 @@ class CommentInline(admin.TabularInline):
 
 
 @admin.register(Post)
-class PostyAdmin(admin.ModelAdmin):
-    """ Admin interface for post model """
+class PostAdmin(admin.ModelAdmin):
+    """ Административный интерфейс для модели Пост. """
 
     date_hierarchy = "created_at"
     autocomplete_fields = (
@@ -137,7 +174,7 @@ class PostyAdmin(admin.ModelAdmin):
     )
     fieldsets = (
         ('Медиа', {'fields': ('show_detail_image', 'image')}),
-        ('Основнее', {'fields': ('title', 'slug', 'description')}),
+        ('Основное', {'fields': ('title', 'slug', 'description')}),
         ('Связи', {'fields': ('category', 'tags')}),
         ('Дата и время', {'fields': ('created_at', 'updated_at')}),
     )

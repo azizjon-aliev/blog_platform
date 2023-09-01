@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from .models import (
     Tag,
@@ -6,9 +7,11 @@ from .models import (
     Comment,
 )
 
+User = get_user_model()
+
 
 class TagListSerializer(serializers.ModelSerializer):
-    """ List serializer for tag model """
+    """ Сериализатор списка для модели Тег. """
 
     class Meta:
         model = Tag
@@ -21,7 +24,7 @@ class TagListSerializer(serializers.ModelSerializer):
 
 
 class TagDetailSerializer(serializers.ModelSerializer):
-    """ Detail serializer for tag model """
+    """ Сериализатор деталей для модели Тег. """
 
     class Meta:
         model = Tag
@@ -36,7 +39,7 @@ class TagDetailSerializer(serializers.ModelSerializer):
 
 
 class CategoryListSerializer(serializers.ModelSerializer):
-    """ List serializer for category model """
+    """ Сериализатор списка для модели Категория. """
 
     class Meta:
         model = Category
@@ -49,7 +52,7 @@ class CategoryListSerializer(serializers.ModelSerializer):
 
 
 class CategoryDetailSerializer(serializers.ModelSerializer):
-    """ Detail serializer for category model """
+    """ Сериализатор деталей для модели Категория. """
 
     class Meta:
         model = Category
@@ -65,7 +68,8 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
 
 
 class PostListSerializer(serializers.ModelSerializer):
-    """ List serializer for post model """
+    """ Сериализатор списка для модели Пост. """
+
     category = CategoryListSerializer()
 
     class Meta:
@@ -82,7 +86,8 @@ class PostListSerializer(serializers.ModelSerializer):
 
 
 class PostDetailSerializer(serializers.ModelSerializer):
-    """ Detail serializer for post model """
+    """ Сериализатор деталей для модели Пост. """
+
     category = CategoryListSerializer()
     tags = TagListSerializer(many=True)
 
@@ -101,14 +106,29 @@ class PostDetailSerializer(serializers.ModelSerializer):
         )
 
 
+class AuthorListSerializer(serializers.ModelSerializer):
+    """ Сериализатор список для модели Автор """
+
+    class Meta:
+        model = User
+        fields = (
+            'id',
+            'username',
+            'email',
+        )
+
+
 class CommentListSerializer(serializers.ModelSerializer):
-    """ List serializer for comment model """
+    """ Сериализатор списка для модели Комментарий. """
+
+    author = AuthorListSerializer()
 
     class Meta:
         model = Comment
         fields = (
             'id',
             'text',
+            'author',
             'created_at',
             'updated_at',
         )
