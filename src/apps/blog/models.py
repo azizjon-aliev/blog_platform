@@ -5,8 +5,8 @@ from src.utils.base.models import Timestampble
 class Tag(Timestampble):
     """ Model tag for model post """
 
-    title = models.CharField(verbose_name="Названия", max_length=200)
-    slug = models.SlugField(verbose_name="URL", unique=True)
+    title = models.CharField(verbose_name="Названия", max_length=200, unique=True)
+    slug = models.SlugField(verbose_name="URL", unique=True, db_index=True)
 
     def __str__(self):
         return self.title
@@ -31,6 +31,20 @@ class Category(Timestampble):
         ordering = ("-created_at",)
         verbose_name = "Категория"
         verbose_name_plural = "Категории"
+
+
+class Comment(Timestampble):
+    """ Model comment for model post """
+    post = models.ForeignKey('Post', verbose_name="Публикация", on_delete=models.CASCADE)
+    text = models.TextField(verbose_name="Комментария")
+
+    def __str__(self):
+        return self.text
+
+    class Meta:
+        ordering = ("-created_at",)
+        verbose_name = "Комментария"
+        verbose_name_plural = "Комментарии"
 
 
 class Post(Timestampble):

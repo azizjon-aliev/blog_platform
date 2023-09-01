@@ -1,10 +1,8 @@
 from django.contrib import admin
-from django.utils.html import format_html
-
 from .models import (
     Tag,
     Category,
-    Post,
+    Post, Comment,
 )
 from .utils import display_image
 
@@ -55,6 +53,50 @@ class CategoryAdmin(admin.ModelAdmin):
     }
 
 
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    """ Admin interface for comment model """
+
+    date_hierarchy = "created_at"
+    autocomplete_fields = (
+        'post',
+    )
+    list_display = (
+        'post',
+        'text',
+        'created_at',
+    )
+    list_filter = (
+        'post',
+    )
+    search_fields = (
+        'post__title',
+        'text',
+    )
+    readonly_fields = (
+        'created_at',
+        'updated_at',
+    )
+
+
+class CommentInline(admin.TabularInline):
+    model = Comment
+    max_num = 0
+    extra = 0
+    can_delete = False
+    fields = (
+        'text',
+        'created_at',
+    )
+    readonly_fields = (
+        'text',
+        'created_at',
+    )
+    classes = (
+        'collapse',
+    )
+
+
 @admin.register(Post)
 class PostyAdmin(admin.ModelAdmin):
     """ Admin interface for post model """
@@ -96,6 +138,9 @@ class PostyAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         'slug': ('title',)
     }
+    inlines = (
+        CommentInline,
+    )
 
     def show_list_image(self, obj):
         return display_image(obj, 65, 65)
