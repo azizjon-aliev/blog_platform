@@ -62,7 +62,7 @@ class Comment(Timestampble, Authorable):
         verbose_name_plural = "Комментарии"
 
 
-class Post(Timestampble, Permalinkable):
+class Post(Timestampble, Permalinkable, Authorable):
     """ Модель поста для пользователей. """
 
     # Блок полей медиа

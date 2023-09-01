@@ -3,6 +3,7 @@
   fields:
     title: Искусственный интеллект
     slug: iskusstvennyy-intellekt
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -11,6 +12,7 @@
   fields:
     title: Компьютерное зрение
     slug: kompyuternoe-zrenie
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -19,6 +21,7 @@
   fields:
     title: Блокчейн
     slug: blokchein
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -27,6 +30,7 @@
   fields:
     title: Кибербезопасность
     slug: kiberbezopasnost
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -35,6 +39,7 @@
   fields:
     title: Робототехника
     slug: robototehnika
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -43,6 +48,7 @@
   fields:
     title: Путешествия по Европе
     slug: puteshestviya-po-evrope
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -51,6 +57,7 @@
   fields:
     title: Экзотические направления
     slug: ekzoticheskie-napravleniya
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -59,6 +66,7 @@
   fields:
     title: Бюджетные путешествия
     slug: byudzhetnye-puteshestviya
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -67,6 +75,7 @@
   fields:
     title: Советы для путешественников
     slug: sovety-dlya-puteshestvennikov
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -75,6 +84,7 @@
   fields:
     title: Гастрономические открытия
     slug: gastronomicheskie-otkrytiya
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -83,6 +93,7 @@
   fields:
     title: Здоровый образ жизни
     slug: zdorovyy-obraz-zhizni
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -91,6 +102,7 @@
   fields:
     title: Упражнения для фитнеса
     slug: uprazhneniya-dlya-fitnesa
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -99,6 +111,7 @@
   fields:
     title: Правильное питание
     slug: pravilnoe-pitanie
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -107,6 +120,7 @@
   fields:
     title: Психологическое благополучие
     slug: psikhologicheskoe-blagopoluchie
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -115,6 +129,7 @@
   fields:
     title: Медицинские новости
     slug: meditsinskie-novosti
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -123,6 +138,7 @@
   fields:
     title: Искусство и живопись
     slug: iskusstvo-i-zhivopis
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -131,6 +147,7 @@
   fields:
     title: Фотография
     slug: fotografiya
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -139,6 +156,7 @@
   fields:
     title: Литература и писательство
     slug: literatura-i-pisatelstvo
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -147,6 +165,7 @@
   fields:
     title: Дизайн интерьера
     slug: dizayn-interera
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -155,6 +174,7 @@
   fields:
     title: Рукоделие и ремесла
     slug: rukodelie-i-remesla
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -163,6 +183,7 @@
   fields:
     title: Эффективное управление временем
     slug: effektivnoe-upravlenie-vremenem
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -171,6 +192,7 @@
   fields:
     title: Организация рабочего пространства
     slug: organizatsiya-rabochego-prostranstva
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -179,6 +201,7 @@
   fields:
     title: Финансовая грамотность
     slug: finansovaya-gramotnost
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -187,6 +210,7 @@
   fields:
     title: Домашние хитрости
     slug: domashnie-khitrosti
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -195,5 +219,6 @@
   fields:
     title: Советы по улучшению повседневной жизни
     slug: sovety-po-uluchsheniyu-povsednevnoy-zhizni
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z

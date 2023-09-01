@@ -1,4 +1,3 @@
-import hashlib
 import os
 import re
 import uuid
@@ -18,3 +17,12 @@ def reduce_path(file_name, times):
 def generate_unique_string(length):
     generated_string = str(uuid.uuid4())[:length]
     return generated_string
+
+
+def is_valid_email(email):
+    pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+
+    if re.match(pattern, email):
+        return True
+    else:
+        return False

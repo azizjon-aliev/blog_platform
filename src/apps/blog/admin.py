@@ -93,42 +93,6 @@ class CategoryAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
 
 
-@admin.register(Comment)
-class CommentAdmin(admin.ModelAdmin):
-    """ Административный интерфейс для модели Комментарий. """
-
-    date_hierarchy = "created_at"
-    autocomplete_fields = (
-        'post',
-    )
-    list_display = (
-        'post',
-        'author',
-        'text',
-        'created_at',
-    )
-    list_filter = (
-        'post',
-        'author',
-    )
-    search_fields = (
-        'post__title',
-        'author__username',
-        'text',
-    )
-    readonly_fields = (
-        'author',
-        'created_at',
-        'updated_at',
-    )
-
-    def save_model(self, request, obj, form, change):
-        """ Переопределенный метод save_model для автоматической установки автора. """
-
-        obj.author = request.user
-        super().save_model(request, obj, form, change)
-
-
 class CommentInline(admin.TabularInline):
     """ Inline-класс для комментариев, используемый в административном интерфейсе. """
 
@@ -175,7 +139,7 @@ class PostAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Медиа', {'fields': ('show_detail_image', 'image')}),
         ('Основное', {'fields': ('title', 'slug', 'description')}),
-        ('Связи', {'fields': ('category', 'tags')}),
+        ('Связи', {'fields': ('category', 'tags', 'author')}),
         ('Дата и время', {'fields': ('created_at', 'updated_at')}),
     )
     search_fields = (
@@ -186,6 +150,7 @@ class PostAdmin(admin.ModelAdmin):
     )
     readonly_fields = (
         'show_detail_image',
+        'author',
         'created_at',
         'updated_at',
     )
@@ -196,6 +161,15 @@ class PostAdmin(admin.ModelAdmin):
         CommentInline,
     )
 
+    def get_queryset(self, request):
+        return Post.objects.filter(author=request.user)
+
+    def save_model(self, request, obj, form, change):
+        """ Переопределенный метод save_model для автоматической установки автора. """
+
+        obj.author = request.user
+        super().save_model(request, obj, form, change)
+
     def show_list_image(self, obj):
         return display_image(obj, 65, 65)
 
@@ -204,3 +178,5 @@ class PostAdmin(admin.ModelAdmin):
 
     show_list_image.short_description = 'Изображения'
     show_detail_image.short_description = 'Изображения'
+
+

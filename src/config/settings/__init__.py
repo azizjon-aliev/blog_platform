@@ -4,3 +4,4 @@ from .database import *
 from .cors import *
 from .swagger import *
 from .email import *
+from .rest_framework import *

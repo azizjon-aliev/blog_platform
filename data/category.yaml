@@ -4,6 +4,7 @@
     title: Технологии
     slug: technology
     description: Категория о последних технологических новинках.
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -13,6 +14,7 @@
     title: Путешествия
     slug: travel
     description: Категория о путешествиях и отдыхе.
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -23,6 +25,7 @@
     title: Здоровье и фитнес
     slug: health-fitness
     description: Категория о здоровье, фитнесе и образе жизни.
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -32,6 +35,7 @@
     title: Креативность
     slug: creativity
     description: Категория о творчестве и искусстве.
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -41,6 +45,7 @@
     title: Лайфхаки
     slug: life-hacks
     description: Категория с полезными советами и лайфхаками.
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -51,6 +56,7 @@
     title: Мода и стиль
     slug: fashion-style
     description: Категория о моде, стиле и трендах.
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -60,6 +66,7 @@
     title: Образование
     slug: education
     description: Категория об образовательных материалах и новостях.
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -69,6 +76,7 @@
     title: Стиль жизни
     slug: lifestyle
     description: Категория о разнообразных стилях жизни.
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -78,6 +86,7 @@
     title: Наука и исследования
     slug: science-research
     description: Категория о научных открытиях и исследованиях.
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -87,6 +96,7 @@
     title: Новости и мнения
     slug: news-opinions
     description: Категория с новостями и мнениями на разные темы.
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -96,6 +106,7 @@
     title: Психология и саморазвитие
     slug: psychology-self-development
     description: Категория о психологии, саморазвитии и личном росте.
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -105,6 +116,7 @@
     title: Спорт и активный образ жизни
     slug: sports-active-lifestyle
     description: Категория о спорте, здоровом образе жизни и активности.
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -114,6 +126,7 @@
     title: Искусство и культура
     slug: art-culture
     description: Категория об искусстве, культуре и креативных выражениях.
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -123,6 +136,7 @@
     title: Кулинария
     slug: cooking
     description: Категория о готовке, рецептах и кулинарных удовольствиях.
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
 
@@ -132,5 +146,6 @@
     title: Тренинги и семинары
     slug: workshops-seminars
     description: Категория о тренингах, семинарах и обучающих мероприятиях.
+    author: 1
     created_at: 2023-08-31T10:00:00Z
     updated_at: 2023-08-31T10:00:00Z
