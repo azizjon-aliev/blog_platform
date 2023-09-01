@@ -1,12 +1,11 @@
 from django.db import models
-from src.utils.base.models import Timestampble
+from src.utils.base.models import Timestampble, Authorable, Permalinkable
 
 
-class Tag(Timestampble):
+class Tag(Timestampble, Permalinkable, Authorable):
     """ Model tag for model post """
 
     title = models.CharField(verbose_name="Названия", max_length=200, unique=True)
-    slug = models.SlugField(verbose_name="URL", unique=True, db_index=True)
 
     def __str__(self):
         return self.title
@@ -17,11 +16,10 @@ class Tag(Timestampble):
         verbose_name_plural = "Теги"
 
 
-class Category(Timestampble):
+class Category(Timestampble, Permalinkable):
     """ Model category for model post """
 
-    title = models.CharField(verbose_name="Названия", max_length=200)
-    slug = models.SlugField(verbose_name="URL", unique=True)
+    title = models.CharField(verbose_name="Названия", max_length=200, unique=True)
     description = models.TextField(verbose_name="Описания", blank=True)
 
     def __str__(self):
@@ -47,19 +45,22 @@ class Comment(Timestampble):
         verbose_name_plural = "Комментарии"
 
 
-class Post(Timestampble):
+class Post(Timestampble, Permalinkable):
     """ Model post for model user """
 
     image = models.ImageField(verbose_name="Изображения", upload_to="blog/post/images/", blank=True, null=True)
     title = models.CharField(verbose_name="Названия", max_length=200)
     description = models.TextField(verbose_name="Описания", blank=True)
-    slug = models.SlugField(verbose_name="URL", unique=True)
     is_published = models.BooleanField(verbose_name="Опубликовать", default=True)
     category = models.ForeignKey(Category, verbose_name="Категория", on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag, verbose_name="Теги", related_name='tags')
 
     def __str__(self):
         return self.title
+
+    @property
+    def comments_count(self):
+        return Comment.objects.filter(post=self).count()
 
     class Meta:
         ordering = ("-created_at",)

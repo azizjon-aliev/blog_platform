@@ -31,3 +31,8 @@ refresh-db:
 
 fakedata:
 	python -m src.manage fakedata
+
+
+loaddata:
+	python -m src.manage loaddata --format yaml data/tag.yaml
+	python -m src.manage loaddata --format yaml data/category.yaml

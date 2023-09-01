@@ -2,7 +2,8 @@ from django.contrib import admin
 from .models import (
     Tag,
     Category,
-    Post, Comment,
+    Post,
+    Comment,
 )
 from .utils import display_image
 
@@ -15,19 +16,35 @@ class TagAdmin(admin.ModelAdmin):
     list_display = (
         'title',
         'slug',
+        'author',
         'created_at',
+    )
+    list_filter = (
+        'author',
+    )
+    fields = (
+        'title',
+        'slug',
+        'author',
+        'created_at',
+        'updated_at',
     )
     search_fields = (
         'title',
         'slug',
     )
     readonly_fields = (
+        'author',
         'created_at',
         'updated_at',
     )
     prepopulated_fields = {
         'slug': ('title',)
     }
+
+    def save_model(self, request, obj, form, change):
+        obj.author = request.user
+        super().save_model(request, obj, form, change)
 
 
 @admin.register(Category)
