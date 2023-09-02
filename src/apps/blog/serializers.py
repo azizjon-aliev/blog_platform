@@ -1,3 +1,5 @@
+import time
+
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from .models import (
@@ -146,6 +148,20 @@ class PostUpdateSerializer(serializers.ModelSerializer):
         )
 
 
+class CommentUpdateSerializer(serializers.ModelSerializer):
+    post = PostListSerializer(read_only=True)
+
+    class Meta:
+        model = Comment
+        fields = (
+            'id',
+            'text',
+            'post',
+            'created_at',
+            'updated_at',
+        )
+
+
 class AuthorListSerializer(serializers.ModelSerializer):
     """ Сериализатор список для модели Автор """
 
@@ -169,6 +185,23 @@ class CommentListSerializer(serializers.ModelSerializer):
             'id',
             'text',
             'author',
+            'created_at',
+            'updated_at',
+        )
+
+
+class CommentCreateSerializer(serializers.ModelSerializer):
+    """ Сериализатор для создания модели Комментарий. """
+
+    def save(self, **kwargs):
+        self.validated_data['author'] = self.context['request'].user
+        return super().save(**kwargs)
+
+    class Meta:
+        model = Comment
+        fields = (
+            'id',
+            'text',
             'created_at',
             'updated_at',
         )

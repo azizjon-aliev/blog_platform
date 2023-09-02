@@ -1,3 +1,6 @@
+import time
+
+from django.http import Http404
 from rest_framework import generics, status
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.permissions import IsAuthenticated
@@ -18,7 +21,7 @@ from .serializers import (
     PostDetailSerializer,
     CommentListSerializer,
     PostCreateSerializer,
-    PostUpdateSerializer,
+    PostUpdateSerializer, CommentCreateSerializer, CommentUpdateSerializer,
 )
 
 
@@ -186,12 +189,59 @@ class PostRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
         return Response(PostDetailSerializer(instance).data)
 
 
-class GetCommentsByPostAPIView(generics.ListAPIView):
+class GetCreateCommentsByPostAPIView(generics.ListCreateAPIView):
     """ Get comments by post api view """
-
-    serializer_class = CommentListSerializer
-    authentication_classes = ()
 
     def get_queryset(self):
         slug = self.kwargs['slug']
         return Comment.objects.filter(post__slug=slug)
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            self.authentication_classes = ()
+            return CommentListSerializer
+        return CommentCreateSerializer
+
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            return ()
+        return (IsAuthenticated(),)
+
+    def create(self, request, *args, **kwargs):
+        slug = self.kwargs['slug']
+
+        if not Post.objects.filter(slug=slug).exists():
+            raise Http404
+
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        serializer.validated_data['post'] = Post.objects.get(slug=slug)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+class CommentDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    """ Detail api view for comment model """
+
+    queryset = Comment.objects.all()
+    serializer_class = CommentUpdateSerializer
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            self.authentication_classes = ()
+            return super().get_serializer_class()
+        return super().get_serializer_class()
+
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            return ()
+        if self.request.method == 'POST':
+            return (
+                IsAuthenticated(),
+            )
+        return (
+            IsAuthenticated(),
+            IsAuthor(),
+        )
