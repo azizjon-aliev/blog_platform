@@ -6,9 +6,9 @@ from .views import (
     CategoryListAPIView,
     CategoryDetailAPIView,
     GetPostsByCategoryAPIView,
-    PostListAPIView,
-    PostDetailAPIView,
+    PostListCreateAPIView,
     GetCommentsByPostAPIView,
+    PostRetrieveUpdateDestroyAPIView,
 )
 
 urlpatterns = [
@@ -23,7 +23,7 @@ urlpatterns = [
     path('categories/<slug:slug>/posts/', GetPostsByCategoryAPIView.as_view()),
 
     # posts
-    path('posts/', PostListAPIView.as_view()),
-    path('posts/<slug:slug>/', PostDetailAPIView.as_view()),
+    path('posts/', PostListCreateAPIView.as_view()),
+    path('posts/<slug:slug>/', PostRetrieveUpdateDestroyAPIView.as_view()),
     path('posts/<slug:slug>/comments/', GetCommentsByPostAPIView.as_view()),
 ]

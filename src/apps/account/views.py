@@ -1,12 +1,14 @@
 from django.contrib.auth import get_user_model
 from drf_spectacular.utils import extend_schema
+from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics, status
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-from .serializers import LoginSerializer, RegisterSerializer
+from .serializers import LoginSerializer, RegisterSerializer, ProfileSerializer
 from src.apps.blog.models import Post
 from src.apps.blog.views import PostListAPIView
 from src.utils.functions import is_valid_email
@@ -140,3 +142,39 @@ class ProfilePostListAPIView(PostListAPIView):
         :return: Запрос для выборки постов
         """
         return Post.objects.filter(author=self.request.user)
+
+
+class ProfileAPIView(generics.RetrieveUpdateDestroyAPIView):
+    """ API view for model profile
+    """
+
+    queryset = Post.objects.all()
+    serializer_class = ProfileSerializer
+    authentication_classes = (JWTAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request, *args, **kwargs):
+        instance = request.user.profile
+        return Response(self.get_serializer(instance).data, status=status.HTTP_200_OK)
+
+    def put(self, request, *args, **kwargs):
+        instance = request.user.profile
+        serializer = self.get_serializer(instance, data=request.data, partial=False)
+        serializer.is_valid(raise_exception=True)
+        instance = serializer.save()
+        return Response(self.get_serializer(instance).data)
+
+    def patch(self, request, *args, **kwargs):
+        instance = request.user.profile
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        instance = serializer.save()
+        return Response(self.get_serializer(instance).data)
+
+    def delete(self, request, *args, **kwargs):
+        instance = request.user
+        instance.is_active = False
+        instance.save()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+

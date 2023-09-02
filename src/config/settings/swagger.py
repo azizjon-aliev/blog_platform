@@ -3,6 +3,7 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'Description api',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
+    'COMPONENT_SPLIT_REQUEST': True,
     'SPECTACULAR_DEFAULTS': {
         'SERVE_PERMISSIONS': ['rest_framework.permissions.AllowAny'],
     },

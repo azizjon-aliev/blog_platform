@@ -2,6 +2,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 
+from src.apps.account.models import Profile
+
 User = get_user_model()
 
 
@@ -65,4 +67,17 @@ class RegisterSerializer(serializers.ModelSerializer):
             'email',
             'password',
             'password_confirmation',
+        )
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = (
+            'id',
+            'avatar',
+            'about',
+            'address',
+            'created_at',
+            'updated_at',
         )

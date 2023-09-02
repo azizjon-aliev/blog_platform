@@ -106,6 +106,46 @@ class PostDetailSerializer(serializers.ModelSerializer):
         )
 
 
+class PostCreateSerializer(serializers.ModelSerializer):
+    """ Сериализатор для создания модели Пост. """
+
+    def create(self, validated_data):
+        user = self.context['request'].user
+        validated_data['author'] = user
+        return super().create(validated_data)
+
+    class Meta:
+        model = Post
+        fields = (
+            'id',
+            'image',
+            'title',
+            'slug',
+            'category',
+            'tags',
+            'comments_count',
+            'created_at',
+            'updated_at',
+        )
+
+
+class PostUpdateSerializer(serializers.ModelSerializer):
+    """ Сериализатор для обновления модели Пост. """
+
+    class Meta:
+        model = Post
+        fields = (
+            'id',
+            'image',
+            'title',
+            'slug',
+            'category',
+            'tags',
+            'created_at',
+            'updated_at',
+        )
+
+
 class AuthorListSerializer(serializers.ModelSerializer):
     """ Сериализатор список для модели Автор """
 
