@@ -19,3 +19,6 @@ initadmin:
 loaddata:
 	poetry run python -m src.manage loaddata --format yaml data/tag.yaml
 	poetry run python -m src.manage loaddata --format yaml data/category.yaml
+
+test:
+	poetry run python -m src.manage test
