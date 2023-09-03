@@ -1,9 +1,12 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from src.utils.base.models import (
     Timestampble,
     Authorable,
     Permalinkable
 )
+
+User = get_user_model()
 
 
 class Tag(Timestampble, Permalinkable, Authorable):
@@ -84,6 +87,7 @@ class Post(Timestampble, Permalinkable, Authorable):
     )
     tags = models.ManyToManyField(
         Tag,
+        blank=True,
         verbose_name="Теги",
         related_name='posts'
     )

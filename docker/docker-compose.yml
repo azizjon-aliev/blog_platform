@@ -1,8 +1,8 @@
 version: "3.9"
 
 services:
-  web_users:
-    container_name: ecommerce_api
+  platform_blog:
+    container_name: platform_blog_container
     build:
       context: ./..
       dockerfile: docker/python/Dockerfile
@@ -25,7 +25,7 @@ services:
 
   nginx:
       build: nginx
-      container_name: nginx
+      container_name: nginx_container
       restart: on-failure
       ports:
           - "80:80"
@@ -33,7 +33,7 @@ services:
         - staticfiles:/code/static
         - mediafiles:/code/media
       depends_on:
-          - web_users
+          - platform_blog
       networks:
         - default
 

@@ -36,6 +36,8 @@ locale/
 venv/
 .env
 
+.vscode/
+
 # Mac OS files
 .DS_Store
 

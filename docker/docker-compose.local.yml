@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   db:
-    container_name: ecommerce_api-db
+    container_name: db_container
     image: postgres:14-alpine
     volumes:
       - pgdata:/var/lib/postgresql/data.txt
@@ -13,7 +13,7 @@ services:
     networks:
       - db
 
-  web_users:
+  platform_blog:
     depends_on:
       - db
     networks:
@@ -21,7 +21,7 @@ services:
 
   nginx:
     depends_on:
-      - web_users
+      - platform_blog
     networks:
       - db
 

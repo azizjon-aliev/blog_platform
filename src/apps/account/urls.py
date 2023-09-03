@@ -4,6 +4,7 @@ from .views import (
     RegisterAPIView,
     LoginAPIView,
     ProfilePostListAPIView,
+    ProfileAPIView,
 )
 
 urlpatterns = [
@@ -13,5 +14,6 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view()),
 
     # profile
+    path('profile/', ProfileAPIView.as_view()),
     path('profile/posts/', ProfilePostListAPIView.as_view()),
 ]

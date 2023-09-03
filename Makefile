@@ -1,38 +1,24 @@
 runserver:
-	python -m src.manage runserver
+	poetry run python -m src.manage runserver
 
 runserver-prod:
-	python -m src.manage runserver 0.0.0.0:8000
+	poetry run gunicorn --bind 0.0.0.0:8000 src.config.wsgi:application
 
 collectstatic:
-	python -m src.manage collectstatic --noinput
-
+	poetry run python -m src.manage collectstatic --noinput
 
 migrate:
-	python -m src.manage migrate
-
-
-collect:
-	python -m src.manage migrate
-	python -m src.manage initadmin
-
+	poetry run python -m src.manage migrate
 
 migrations:
-	python -m src.manage makemigrations
+	poetry run python -m src.manage makemigrations
 
 initadmin:
-	python -m src.manage initadmin
-
-
-refresh-db:
-	python -m src.manage flush
-	python -m src.manage migrate
-	python -m src.manage initadmin
-
-fakedata:
-	python -m src.manage fakedata
-
+	poetry run python -m src.manage initadmin
 
 loaddata:
-	python -m src.manage loaddata --format yaml data/tag.yaml
-	python -m src.manage loaddata --format yaml data/category.yaml
+	poetry run python -m src.manage loaddata --format yaml data/tag.yaml
+	poetry run python -m src.manage loaddata --format yaml data/category.yaml
+
+test:
+	poetry run python -m src.manage test
