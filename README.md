@@ -14,8 +14,6 @@
 
 ✅ Static and Media
 
-✅ Unit tests
-
 
 ## Быстрый старт
 
