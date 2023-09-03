@@ -103,23 +103,3 @@ class Post(Timestampble, Permalinkable, Authorable):
         ordering = ("-created_at",)
         verbose_name = "Публикация"
         verbose_name_plural = "Публикации"
-
-
-class LikeDislikePost(Timestampble):
-    """ Like and dislike post"""
-
-    TYPE_CHOICES = (
-        (1, 'Нравится'),
-        (2, 'Не нравится'),
-    )
-    user = models.ForeignKey(User, verbose_name="Пользователь", on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, verbose_name="Публикация", on_delete=models.CASCADE)
-    type = models.PositiveSmallIntegerField(verbose_name="Тип", choices=TYPE_CHOICES)
-
-    def __str__(self):
-        return f"{self.user.username} - {self.post.title}"
-
-    class Meta:
-        ordering = ("-created_at",)
-        verbose_name = "Нравится пост"
-        verbose_name_plural = "Нравится посты"
