@@ -1,5 +1,3 @@
-import time
-
 from django.http import Http404
 from rest_framework import generics, status
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -21,7 +19,9 @@ from .serializers import (
     PostDetailSerializer,
     CommentListSerializer,
     PostCreateSerializer,
-    PostUpdateSerializer, CommentCreateSerializer, CommentUpdateSerializer,
+    PostUpdateSerializer,
+    CommentCreateSerializer,
+    CommentUpdateSerializer,
 )
 
 
@@ -236,12 +236,7 @@ class CommentDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_permissions(self):
         if self.request.method == 'GET':
-            return ()
+            return []
         if self.request.method == 'POST':
-            return (
-                IsAuthenticated(),
-            )
-        return (
-            IsAuthenticated(),
-            IsAuthor(),
-        )
+            return [IsAuthenticated()]
+        return [IsAuthenticated(), IsAuthor()]
