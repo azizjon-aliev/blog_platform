@@ -2,6 +2,8 @@
 
 ✅ CRUD, pagination, filtering, sorting and searching
 
+✅ Relationship: one-to-one, one-to-many, many-to-many
+
 ✅ Unit tests
 
 ✅ Docker and docker compose
@@ -9,6 +11,8 @@
 ✅ Production
 
 ✅ Nginx and gunicorn
+
+✅ Static and Media
 
 ✅ Unit tests
 
