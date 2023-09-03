@@ -1,4 +1,4 @@
-# E-commerce API
+# Platform Blog
 
 ## Quick Start
 
