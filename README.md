@@ -42,7 +42,7 @@ $ poetry shell
 7. Выполните `make test`
 8. Вручную создайте суперпользователя: `$ make initadmin`.
 9. Выполните `make loaddata`
-10. Запустите сервер: $ make runserver.
+10. Запустите сервер: `$ make runserver`.
 
 ### Использование с Docker
 
