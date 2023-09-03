@@ -6,10 +6,10 @@ make collectstatic
 make migrate
 make initadmin
 make loaddata
+make runserver-prod
 
 
-if [[ "$DJANGO_ENV" = "PRODUCTION" ]]; then
-  make runserver-prod
-else
-  make runserver
-fi
+#if [[ "$DJANGO_ENV" = "PRODUCTION" ]]; then
+#else
+#  make runserver
+#fi

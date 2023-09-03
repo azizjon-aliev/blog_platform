@@ -10,6 +10,7 @@ load_dotenv()
 
 DJANGO_ENV = os.getenv("DJANGO_ENV", "DEVELOPMENT")
 DEBUG = DJANGO_ENV != "PRODUCTION"
+
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 ROOT_DIR = reduce_path(__file__, 4)
