@@ -2,7 +2,7 @@ runserver:
 	poetry run python -m src.manage runserver
 
 runserver-prod:
-	poetry run python -m src.manage runserver 0.0.0.0:8000
+	poetry run gunicorn --bind 0.0.0.0:8000 src.config.wsgi:application
 
 collectstatic:
 	poetry run python -m src.manage collectstatic --noinput
